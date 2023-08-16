@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #343541;
+}
+
+:root {
+  --primary-color: #343541;
+  --secondary-color: #E91E63;
+}
+
+.pages{
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+html, body {
+  background-color: #f1f1f1;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
