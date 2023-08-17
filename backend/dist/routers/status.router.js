@@ -15,5 +15,11 @@ statusRouter.route('').get((req, res) => {
 statusRouter.route('/like').post((req, res) => {
     (new status_controller_1.StatusController()).like(req, res);
 });
+statusRouter.route('/getWithId').post((req, res) => {
+    (new status_controller_1.StatusController()).getWithId(req, res);
+});
+statusRouter.route('/comment').post((req, res) => {
+    (new status_controller_1.StatusController()).comment(req, res);
+});
 exports.default = statusRouter;
 //# sourceMappingURL=status.router.js.map

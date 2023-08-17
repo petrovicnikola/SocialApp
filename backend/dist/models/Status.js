@@ -14,6 +14,9 @@ const Status = new Schema({
     },
     likedBy: {
         type: (Array)
+    },
+    comments: {
+        type: Array
     }
 }, { timestamps: true });
 exports.default = mongoose_1.default.model('Status', Status);

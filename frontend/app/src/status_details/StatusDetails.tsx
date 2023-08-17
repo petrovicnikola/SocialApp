@@ -6,10 +6,11 @@ import { useState } from "react";
 
 interface StatusDetailsProps {
     status: Status;
+    showButtons: boolean;
 }
 
 const StatusDetails = (props: StatusDetailsProps): JSX.Element => {
-    const { status } = props;
+    const { status, showButtons } = props;
     const { state } = useUserContext();
 
     const [liked, setLiked] = useState<boolean>(false);
@@ -41,12 +42,14 @@ const StatusDetails = (props: StatusDetailsProps): JSX.Element => {
             const json = await response.json();
 
             if (response.ok){
-                console.log('Dobio')
-                console.log(json);
                 status.likedBy = json;
                 setLiked(!liked);
             }
         }
+    }
+
+    const handleComment = (_id: string) => {
+        navigate(`/comments/${_id}`);
     }
 
     return (
@@ -58,13 +61,14 @@ const StatusDetails = (props: StatusDetailsProps): JSX.Element => {
             <div className={styles.body}>
                 <p>{status.text}</p>
             </div>
-            <div className={styles.heart}>&#10084; {status.likedBy.length}</div>
-            <div className={styles.divider}></div>
-            <div className={styles.footer}>
+            {!liked && <div className={styles.heart}>&#10084; {status.likedBy.length}</div>}
+            {liked && <div className={styles.heartLiked}>&#10084; {status.likedBy.length}</div>}
+            {showButtons && <div className={styles.divider}></div>}
+            {showButtons && <div className={styles.footer}>
                 {!liked && <button onClick={handleLike}>Like</button>}
                 {liked && <button className = {styles.likedBtn} onClick={handleLike}>Like</button>}
-                <button className={styles.comment}>Comment</button>
-            </div>
+                <button className={styles.comment} onClick={() => handleComment(status._id)}>Comment</button>
+            </div>}
         </div>
     )
 }

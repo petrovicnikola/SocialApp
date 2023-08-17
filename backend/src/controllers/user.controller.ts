@@ -70,4 +70,23 @@ export class UserController {
             }
         })
     }
+
+    getPhoto = (req: express.Request, res: express.Response) => {
+        const { username } = req.body;
+
+        User.findOne({username: username}, (err, user) => {
+            if (err){
+                console.log(err);
+                res.status(404).json({});
+            }
+            else {
+                if (user['photo']){
+                    let url = user['photo'].split('\\')[1];
+                    res.status(200).json(url);
+                }
+                else
+                    res.status(200).json('');
+            }
+        })
+    }
 }

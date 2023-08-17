@@ -33,4 +33,10 @@ userRouter.post('/upload', upload.single('file'), (req, res) => {
     (new UserController()).upload(req, res);
 })
 
+userRouter.route('/getPhoto').post(
+    (req, res) => {
+        (new UserController()).getPhoto(req, res);
+    }
+)
+
 export default userRouter;

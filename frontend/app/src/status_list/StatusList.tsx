@@ -15,7 +15,7 @@ const StatusList = (props: StatusListProps): JSX.Element => {
         <div className={styles.container}>
           {statuses.map(status => (
             <div key={status._id} >
-              <StatusDetails status = {status}/>
+              <StatusDetails status = {status} showButtons={true}/>
             </div>
           ))}
         </div>

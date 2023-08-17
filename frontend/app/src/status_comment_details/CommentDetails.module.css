@@ -1,0 +1,22 @@
+.img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.firstRow {
+    display: flex;
+}
+
+.text {
+    margin-top: 10px;
+    padding-left: 5px;
+    overflow: auto;
+}

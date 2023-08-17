@@ -54,6 +54,11 @@ button {
     padding-left: 10px;
 }
 
+.heartLiked {
+    padding-left: 10px;
+    color: var(--secondary-color);
+}
+
 .likedBtn {
     color: #343541;
     font-weight: bolder;

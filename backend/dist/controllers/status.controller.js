@@ -19,7 +19,7 @@ class StatusController {
     constructor() {
         this.newStatus = (req, res) => {
             const { username, text } = req.body;
-            const status = new Status_1.default({ username, text });
+            const status = new Status_1.default({ username, text, comments: [] });
             status.save().then((status) => {
                 res.status(200).json({ message: 'ok' });
             }).catch((err) => {
@@ -64,6 +64,34 @@ class StatusController {
                                     res.status(200).json(status.likedBy);
                                 }
                             });
+                        }
+                    });
+                }
+            });
+        };
+        this.getWithId = (req, res) => {
+            const { id } = req.body;
+            Status_1.default.findOne({ _id: id }, (err, status) => {
+                if (err) {
+                    console.log(err);
+                    res.status(404).json('Error');
+                }
+                else {
+                    res.status(200).json(status);
+                }
+            });
+        };
+        this.comment = (req, res) => {
+            const { username, text, id } = req.body;
+            Status_1.default.updateOne({ _id: id }, { $push: { comments: { username, text, createdAt: Date.now() } } }).then((result) => {
+                if (result.modifiedCount === 1) {
+                    Status_1.default.findOne({ _id: id }, (err, status) => {
+                        if (err) {
+                            console.log(err);
+                            res.status(404).json({});
+                        }
+                        else {
+                            res.status(200).json(status.comments);
                         }
                     });
                 }

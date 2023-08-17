@@ -21,4 +21,16 @@ statusRouter.route('/like').post(
     }
 )
 
+statusRouter.route('/getWithId').post(
+    (req, res) => {
+        (new StatusController()).getWithId(req, res);
+    }
+)
+
+statusRouter.route('/comment').post(
+    (req, res) => {
+        (new StatusController()).comment(req, res);
+    }
+)
+
 export default statusRouter;

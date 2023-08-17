@@ -6,7 +6,7 @@ export class StatusController {
     newStatus = (req: express.Request, res: express.Response) => {
         const { username, text } = req.body;
 
-        const status = new Status({username, text});
+        const status = new Status({username, text, comments: []});
         status.save().then((status) => {
             res.status(200).json({message: 'ok'});
         }).catch((err) => {
@@ -56,6 +56,38 @@ export class StatusController {
                                 res.status(200).json(status.likedBy);
                             }
                         })
+                    }
+                })
+            }
+        })
+    }
+
+    getWithId = (req: express.Request, res: express.Response) => {
+        const { id } = req.body;
+
+        Status.findOne({_id: id}, (err, status) => {
+            if (err){
+                console.log(err);
+                res.status(404).json('Error');
+            }
+            else {
+                res.status(200).json(status);
+            }
+        })
+    }
+
+    comment = (req: express.Request, res: express.Response) => {
+        const { username, text, id } = req.body;
+
+        Status.updateOne({_id: id}, {$push: {comments: {username, text, createdAt: Date.now()}}}).then((result) => {
+            if (result.modifiedCount === 1){
+                Status.findOne({_id: id}, (err, status) => {
+                    if (err){
+                        console.log(err);
+                        res.status(404).json({});
+                    }
+                    else {
+                        res.status(200).json(status.comments);
                     }
                 })
             }

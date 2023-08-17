@@ -25,5 +25,8 @@ userRouter.route('/login').post((req, res) => {
 userRouter.post('/upload', upload.single('file'), (req, res) => {
     (new user_controller_1.UserController()).upload(req, res);
 });
+userRouter.route('/getPhoto').post((req, res) => {
+    (new user_controller_1.UserController()).getPhoto(req, res);
+});
 exports.default = userRouter;
 //# sourceMappingURL=user.router.js.map

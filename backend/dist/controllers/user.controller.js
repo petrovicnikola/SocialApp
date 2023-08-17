@@ -92,6 +92,23 @@ class UserController {
                 }
             });
         };
+        this.getPhoto = (req, res) => {
+            const { username } = req.body;
+            User_1.default.findOne({ username: username }, (err, user) => {
+                if (err) {
+                    console.log(err);
+                    res.status(404).json({});
+                }
+                else {
+                    if (user['photo']) {
+                        let url = user['photo'].split('\\')[1];
+                        res.status(200).json(url);
+                    }
+                    else
+                        res.status(200).json('');
+                }
+            });
+        };
     }
 }
 exports.UserController = UserController;

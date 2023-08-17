@@ -5,6 +5,7 @@ import Register from './register/Register';
 import Feed from './feed/Feed';
 import Navbar from './navbar/Navbar';
 import { useUserContext } from './hooks/useUserContext';
+import StatusComments from './status_comments/StatusComments';
 
 function App() {
   const { state } = useUserContext();
@@ -27,6 +28,10 @@ function App() {
             <Route
               path='/feed'
               element={<Feed/>}
+            />
+            <Route
+              path='/comments/:id'
+              element={<StatusComments/>}
             />
           </Routes>
         </div>

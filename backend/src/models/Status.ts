@@ -11,6 +11,9 @@ const Status = new Schema({
     },
     likedBy: {
         type: Array<String>
+    },
+    comments: {
+        type: Array
     }
 
 }, {timestamps: true});
