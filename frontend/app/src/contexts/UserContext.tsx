@@ -3,13 +3,14 @@ import { User } from "../models/User";
 
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const UPDATE = 'UPDATE';
 
 type UserState = {
     user: User | null;
 }
 
 type UserAction = {
-    type: typeof LOGIN | typeof LOGOUT;
+    type: typeof LOGIN | typeof LOGOUT | typeof UPDATE;
     payload?: User;
 }
 
@@ -18,13 +19,29 @@ export const UserContext = createContext<{state: UserState; dispatch: React.Disp
 export const userReducer = (state: any, action: any) => {
     switch(action.type){
         case 'LOGIN': {
+            localStorage.setItem('user', JSON.stringify(action.payload));
             return {
                 user: action.payload
             }
         }
         case 'LOGOUT': {
+            if (localStorage.getItem('user')){
+                localStorage.removeItem('user');
+            }
             return {
                 user: null
+            }
+        }
+        case 'UPDATE': {
+            let userStr = localStorage.getItem('user');
+            let user = null;
+            if (userStr){
+                user = JSON.parse(userStr);
+                user.photo = action.payload;
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+            return {
+                user: user
             }
         }
         default:{

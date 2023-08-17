@@ -89,4 +89,21 @@ export class UserController {
             }
         })
     }
+
+    getWithUsername = (req: express.Request, res: express.Response) => {
+        const { username } = req.body;
+
+        User.findOne({username: username}, (err, user) => {
+            if (err){
+                console.log(err);
+                res.status(404).json({});
+            }
+            else {
+                if (user['photo']){
+                    user['photo'] = user['photo'].split('\\')[1];
+                }
+                res.status(200).json(user);
+            }
+        })
+    }
 }

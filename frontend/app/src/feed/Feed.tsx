@@ -3,9 +3,10 @@ import { useUserContext } from "../hooks/useUserContext";
 import StatusAdd from "../status_add/StatusAdd";
 import styles from './Feed.module.css';
 import StatusList from "../status_list/StatusList";
+import { UPDATE } from "../contexts/UserContext";
 
 const Feed = (): JSX.Element => {
-    const { state } = useUserContext();
+    const { state, dispatch } = useUserContext();
     const user = state.user;
     const [data, setData] = useState(null);
     const [fetchData, setFetchData] = useState(false);
@@ -29,6 +30,7 @@ const Feed = (): JSX.Element => {
             });
 
             const json = await response.json();
+            dispatch({type: UPDATE, payload: json['filename']});
             setFileName(json['filename']);
         }
 
@@ -80,8 +82,8 @@ const Feed = (): JSX.Element => {
                             <button onClick={handleUploadPhoto}>Upload</button>
                             <button className = {styles.cancelButton} onClick={closeDialog}>Cancel</button>
                         </dialog>
-                        {filename && <img src={`http://localhost:4000/uploads/${filename}`} onClick={showDialog}/>}
-                        {!filename && <img src={`${process.env.PUBLIC_URL}/default.jpg`} onClick={showDialog}/>}
+                        {user.photo && <img src={`http://localhost:4000/uploads/${user.photo}`} onClick={showDialog}/>}
+                        {(!user.photo || user.photo === '') && <img src={`${process.env.PUBLIC_URL}/default.jpg`} onClick={showDialog}/>}
                         <h2>My Profile</h2>
                     </div>
                     <div className={styles.statusContainer}>

@@ -1,5 +1,5 @@
 import express from "express";
-import { UserController } from "../controllers/user.controller";
+import { UserController } from "../controllers/user.controller"
 
 const multer = require('multer');
 
@@ -36,6 +36,12 @@ userRouter.post('/upload', upload.single('file'), (req, res) => {
 userRouter.route('/getPhoto').post(
     (req, res) => {
         (new UserController()).getPhoto(req, res);
+    }
+)
+
+userRouter.route('/getWithUsername').post(
+    (req, res) => {
+        (new UserController()).getWithUsername(req, res);
     }
 )
 
