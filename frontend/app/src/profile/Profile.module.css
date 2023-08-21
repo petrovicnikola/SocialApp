@@ -1,0 +1,113 @@
+.img {
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    border: 1px solid darkslategray;
+    object-fit: cover;
+    margin: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    width: 200px;
+    height: 60px;
+    padding: 15px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.statusContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    margin-left: 20%;
+}
+
+.name {
+    font-size: 24pt;
+    padding-left: 10px;
+}
+
+.location,
+.bio {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.locationText,
+.bioText {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.addLocation,
+.addBio {
+    cursor: pointer;
+}
+
+.username {
+    font-size: medium;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.profileInfo {
+    background-color: #fff;
+    width: 300px;
+    height: fit-content;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 70px;
+    margin-left: 25px;
+    margin-top: 25px;
+    padding-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.cancelButton{
+    background-color: var(--primary-color);
+}
+
+/* Dialog */
+
+dialog[open] {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+span {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+

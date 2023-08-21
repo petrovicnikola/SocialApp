@@ -6,5 +6,6 @@ export interface User {
     email: string;
     gender: string;
     bio: string;
+    location: string;
     photo: string;
 }

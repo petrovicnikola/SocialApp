@@ -45,4 +45,10 @@ userRouter.route('/getWithUsername').post(
     }
 )
 
+userRouter.route('/updateField').post(
+    (req, res) => {
+        (new UserController()).updateField(req, res);
+    }
+)
+
 export default userRouter;

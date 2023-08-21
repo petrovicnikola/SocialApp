@@ -43,3 +43,8 @@
 .cancelButton{
     background-color: var(--primary-color);
 }
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}

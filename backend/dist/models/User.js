@@ -27,6 +27,9 @@ const User = new Schema({
     bio: {
         type: String
     },
+    location: {
+        type: String
+    },
     photo: {
         type: String
     }

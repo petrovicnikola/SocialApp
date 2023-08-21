@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Comment } from "../models/Comment";
 import styles from './CommentDetails.module.css';
+import { Link } from "react-router-dom";
 
 interface CommentDetailsProps {
     comment: Comment;
@@ -36,7 +37,7 @@ const CommentDetails = (props: CommentDetailsProps): JSX.Element => {
         <div className={styles.container}>
             <div className={styles.firstRow}>
                 {userPhoto !== '' && <img src={`http://localhost:4000/uploads/${userPhoto}`} className={styles.img}></img>}
-                <b style={{paddingTop: '5px', paddingLeft: '5px'}}>@{comment.username}</b>
+                <Link to={`/profile/${comment.username}`}><b style={{paddingTop: '5px', paddingLeft: '5px'}}>@{comment.username}</b></Link>
             </div>
             <div className={styles.text}>
                 <p>{comment.text}</p>

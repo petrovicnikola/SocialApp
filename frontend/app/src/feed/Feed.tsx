@@ -4,6 +4,7 @@ import StatusAdd from "../status_add/StatusAdd";
 import styles from './Feed.module.css';
 import StatusList from "../status_list/StatusList";
 import { UPDATE } from "../contexts/UserContext";
+import { Link } from "react-router-dom";
 
 const Feed = (): JSX.Element => {
     const { state, dispatch } = useUserContext();
@@ -79,15 +80,17 @@ const Feed = (): JSX.Element => {
                     <div className={styles.profile}>
                         <dialog ref={dialogRef}>
                             <input type="file" onChange={(ev) => handleFileChange(ev)}/>
-                            <button onClick={handleUploadPhoto}>Upload</button>
-                            <button className = {styles.cancelButton} onClick={closeDialog}>Cancel</button>
+                            <div className={styles.buttons}>
+                                <button onClick={handleUploadPhoto}>Upload</button>
+                                <button className = {styles.cancelButton} onClick={closeDialog}>Cancel</button>
+                            </div>
                         </dialog>
                         {user.photo && <img src={`http://localhost:4000/uploads/${user.photo}`} onClick={showDialog}/>}
                         {(!user.photo || user.photo === '') && <img src={`${process.env.PUBLIC_URL}/default.jpg`} onClick={showDialog}/>}
-                        <h2>My Profile</h2>
+                        <Link to={`/profile/${user.username}`}><h2>My Profile</h2></Link>
                     </div>
                     <div className={styles.statusContainer}>
-                        <StatusAdd userName = {user.name} callback={statusAddedCallback}/>
+                        <StatusAdd userName = {user.username} callback={statusAddedCallback}/>
                         {data && <StatusList statuses={data}></StatusList>}
                     </div>
                 </div>

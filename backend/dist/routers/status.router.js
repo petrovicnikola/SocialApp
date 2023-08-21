@@ -21,5 +21,8 @@ statusRouter.route('/getWithId').post((req, res) => {
 statusRouter.route('/comment').post((req, res) => {
     (new status_controller_1.StatusController()).comment(req, res);
 });
+statusRouter.route('/getForUser').post((req, res) => {
+    (new status_controller_1.StatusController()).getForUser(req, res);
+});
 exports.default = statusRouter;
 //# sourceMappingURL=status.router.js.map

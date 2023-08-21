@@ -93,4 +93,18 @@ export class StatusController {
             }
         })
     }
+
+    getForUser = (req: express.Request, res: express.Response) => {
+        const { username } = req.body;
+
+        Status.find({username: username}, (err, result) => {
+            if (err){
+                console.log(err);
+                res.status(404).json([]);
+            }
+            else {
+                res.status(200).json(result);
+            }
+        })
+    }
 }

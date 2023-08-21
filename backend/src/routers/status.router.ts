@@ -33,4 +33,10 @@ statusRouter.route('/comment').post(
     }
 )
 
+statusRouter.route('/getForUser').post(
+    (req, res) => {
+        (new StatusController()).getForUser(req, res);
+    }
+)
+
 export default statusRouter;

@@ -7,6 +7,7 @@ import Navbar from './navbar/Navbar';
 import { useUserContext } from './hooks/useUserContext';
 import StatusComments from './status_comments/StatusComments';
 import { LOGIN } from './contexts/UserContext';
+import Profile from './profile/Profile';
 
 function App() {
   const { state } = useUserContext();
@@ -61,6 +62,10 @@ function App() {
             <Route
               path='/comments/:id'
               element={<StatusComments/>}
+            />
+            <Route
+              path='/profile/:username'
+              element={<Profile/>}
             />
           </Routes>
         </div>

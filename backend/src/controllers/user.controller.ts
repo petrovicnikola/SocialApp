@@ -18,7 +18,7 @@ export class UserController {
                         return;
                     }
                     else {
-                        const newUser = new User({username, password, name, surname, email, gender: '', bio: ''});
+                        const newUser = new User({username, password, name, surname, email, gender: '', bio: '', location: ''});
                         newUser.save().then(user => {
                             res.status(200).json({message : "ok"});
                         }).catch(err => {
@@ -103,6 +103,27 @@ export class UserController {
                     user['photo'] = user['photo'].split('\\')[1];
                 }
                 res.status(200).json(user);
+            }
+        })
+    }
+
+    updateField = (req: express.Request, res: express.Response) => {
+        const { username, fieldName, data } = req.body;
+        
+        User.updateOne({username: username}, {$set: {[fieldName]: data}}).then((result) => {
+            if (result.modifiedCount === 1){
+                User.findOne({username: username}, (err, user) => {
+                    if (err){
+                        console.log(err);
+                        res.status(404).json({});
+                    }
+                    else {
+                        res.status(200).json(user);
+                    }
+                })
+            }
+            else {
+                res.status(404).json({});
             }
         })
     }

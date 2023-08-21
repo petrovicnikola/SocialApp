@@ -61,6 +61,7 @@ const Login = (): JSX.Element => {
             email: json.email,
             gender: json.gender,
             bio: json.bio,
+            location: json.location,
             photo: path
         }
 

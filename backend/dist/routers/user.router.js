@@ -31,5 +31,8 @@ userRouter.route('/getPhoto').post((req, res) => {
 userRouter.route('/getWithUsername').post((req, res) => {
     (new user_controller_1.UserController()).getWithUsername(req, res);
 });
+userRouter.route('/updateField').post((req, res) => {
+    (new user_controller_1.UserController()).updateField(req, res);
+});
 exports.default = userRouter;
 //# sourceMappingURL=user.router.js.map

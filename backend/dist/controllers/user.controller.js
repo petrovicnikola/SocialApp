@@ -45,7 +45,7 @@ class UserController {
                             return;
                         }
                         else {
-                            const newUser = new User_1.default({ username, password, name, surname, email, gender: '', bio: '' });
+                            const newUser = new User_1.default({ username, password, name, surname, email, gender: '', bio: '', location: '' });
                             newUser.save().then(user => {
                                 res.status(200).json({ message: "ok" });
                             }).catch(err => {
@@ -121,6 +121,25 @@ class UserController {
                         user['photo'] = user['photo'].split('\\')[1];
                     }
                     res.status(200).json(user);
+                }
+            });
+        };
+        this.updateField = (req, res) => {
+            const { username, fieldName, data } = req.body;
+            User_1.default.updateOne({ username: username }, { $set: { [fieldName]: data } }).then((result) => {
+                if (result.modifiedCount === 1) {
+                    User_1.default.findOne({ username: username }, (err, user) => {
+                        if (err) {
+                            console.log(err);
+                            res.status(404).json({});
+                        }
+                        else {
+                            res.status(200).json(user);
+                        }
+                    });
+                }
+                else {
+                    res.status(404).json({});
                 }
             });
         };

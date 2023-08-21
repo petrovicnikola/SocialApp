@@ -4,13 +4,15 @@ import { User } from "../models/User";
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE = 'UPDATE';
+export const UPDATE_LOCATION = 'UPDATE_LOCATION';
+export const UPDATE_BIO = 'UPDATE_BIO';
 
 type UserState = {
     user: User | null;
 }
 
 type UserAction = {
-    type: typeof LOGIN | typeof LOGOUT | typeof UPDATE;
+    type: typeof LOGIN | typeof LOGOUT | typeof UPDATE | typeof UPDATE_LOCATION | typeof UPDATE_BIO;
     payload?: User;
 }
 
@@ -38,6 +40,30 @@ export const userReducer = (state: any, action: any) => {
             if (userStr){
                 user = JSON.parse(userStr);
                 user.photo = action.payload;
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+            return {
+                user: user
+            }
+        }
+        case 'UPDATE_LOCATION': {
+            let userStr = localStorage.getItem('user');
+            let user = null;
+            if (userStr){
+                user = JSON.parse(userStr);
+                user.location = action.payload;
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+            return {
+                user: user
+            }
+        }
+        case 'UPDATE_BIO': {
+            let userStr = localStorage.getItem('user');
+            let user = null;
+            if (userStr){
+                user = JSON.parse(userStr);
+                user.bio = action.payload;
                 localStorage.setItem('user', JSON.stringify(user));
             }
             return {
